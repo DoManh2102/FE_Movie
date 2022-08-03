@@ -1,0 +1,716 @@
+/* GLOBAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #717171;
+}
+
+::selection {
+    background: #ec7532;
+    color: #fff;
+}
+
+/* line style */
+.line::after {
+    content: '';
+    width: 0;
+    height: 2px;
+    /*hướng trải màu - giá trị 1
+        to right: trái qua phải 
+        to bottom: từ trên xuống....
+
+        giá trị 2: màu bắt đầu
+        giá trị 3: màu kết thúc
+    */
+    background: linear-gradient(to right, #fbbd61, #ec7532);
+    display: block;
+    box-shadow: 0 0 20px 0 #fbbd61;
+    transition: all 0.5s;
+}
+
+.line:hover:after {
+    width: 100%;
+}
+
+.line.active::after {
+    width: 100%;
+}
+
+
+.section {
+    padding: 75px 0;
+}
+
+.title {
+    color: #ec7532;
+    font-size: 1.125rem;
+    border-bottom: 1px solid #d8d8d8;
+    text-transform: uppercase;
+    letter-spacing: 1.7px;
+    margin-bottom: 40px;
+}
+
+.title::after {
+    content: '';
+    background: linear-gradient(to right, #fbbd61, #ec7532);
+    display: block;
+    width: 125px;
+    height: 4px;
+    margin-top: 20px;
+}
+
+
+/* HEADER */
+header {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    background: transparent;
+}
+
+header p span {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 0.15rem;
+    border-right: 1px solid #adb5bd;
+}
+
+#movieNavBar .nav-item a {
+    color: #fff;
+    letter-spacing: 3px;
+    line-height: 0.8em;
+    padding: 20px 24px;
+}
+
+#movieNavBar .navbar-nav {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+#headerFixed {
+    background: #101010;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transform: translate(-50%, -100%);
+    transition: transform 0.5s;
+    z-index: 99;
+}
+
+
+/* BANNER */
+
+/* first-child: thứ tự trước, loại thẻ */
+/* first-of-type: loại thẻ trước, thứ tự sau */
+#carouselBanner .carousel-caption p:first-of-type {
+    color: #fbbd61;
+    font-size: 0.875rem;
+    letter-spacing: 2px;
+    margin: 0;
+    animation-delay: 0.5s;
+}
+
+#carouselBanner .carousel-caption p:last-of-type {
+    font-size: 1.125rem;
+    margin-bottom: 20px;
+}
+
+#carouselBanner .carousel-caption h3 {
+    font-size: 3.25rem;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.banner__trailer span {
+    width: 48px;
+    height: 48px;
+    border: 2px solid#fff;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    display: inline-block;
+    line-height: 44px;
+    text-align: center;
+}
+
+.banner__trailer {
+    animation-delay: 0.5s;
+}
+
+.banner__trailer button {
+    background: linear-gradient(to right, #fbbd61, #ec7532);
+    padding: 12px 24px;
+    border: none;
+    border-radius: 30px;
+    letter-spacing: 4px;
+    color: #fff;
+    margin-left: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner__trailer button:hover {
+    color: #fff;
+}
+
+.navbar-toggler {
+    color: #fbbd61;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0;
+}
+
+
+/* b1: xây dựng overlay phủ lên thẻ cha (button) */
+.banner__trailer button::before {
+    content: '';
+    width: 110%;
+    height: 110%;
+    background: #ec7532;
+    position: absolute;
+    top: 0;
+    left: 0px;
+    display: block;
+    transform: skew(30deg) translate(-110%);
+    transition: all 0.5s;
+    z-index: 1;
+}
+
+.banner__trailer button:hover:before {
+    transform: skew(30deg) translate(-3%);
+}
+
+.banner__trailer button div {
+    position: relative;
+    z-index: 2;
+}
+
+#carouselBanner .carousel-indicators {
+    justify-content: flex-start;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 0 7%;
+    padding: 0 12px;
+}
+
+#carouselBanner .carousel-indicators>button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: transparent;
+    opacity: 1;
+    box-sizing: border-box;
+}
+
+#carouselBanner .carousel-indicators .active {
+    background: #fff;
+}
+
+.banner__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to top, black, transparent);
+}
+
+.carousel-indicators {
+    z-index: 2;
+}
+
+#carouselBanner .carousel-caption {
+    text-align: start;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#carouselBanner {
+    height: 650px;
+}
+
+#carouselBanner .carousel-inner {
+    height: 100%;
+}
+
+#carouselBanner .carousel-item {
+    height: 100%;
+}
+
+#carouselBanner .carousel-item {
+    background-size: cover;
+    background-position: center;
+}
+
+#carouselBanner .carousel-item.item1 {
+    background-image: url(../img/hero-1.jpg);
+}
+
+#carouselBanner .carousel-item.item2 {
+    background-image: url(../img/hero-2.jpg);
+}
+
+#carouselBanner .carousel-item.item3 {
+    background-image: url(../img/hero-3.jpg);
+}
+
+/* NEWIN */
+.newIn__content .newIn__item img {
+    width: 100%;
+}
+
+.newIn__content .newIn__title {
+    text-align: center;
+}
+
+.newIn__content .newIn__title h4 {
+    color: #4a4a4a;
+    font-size: 18px;
+    margin: 1rem 0;
+}
+
+.newIn__content .newIn__title div {
+    color: #fbbd61;
+}
+
+.newIn__item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.newIn__overlay {
+    width: 200%;
+    height: 101%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #fbbd61, #ec7532);
+    transform: skew(30deg) translateX(-130%);
+    opacity: 0.8;
+    transition: all 0.5s;
+}
+
+/* đã hover */
+/* transform: skew(30deg) translateX(-20%); */
+.newIn__item:hover .newIn__overlay {
+    transform: skew(30deg) translateX(-20%);
+}
+
+.newIn__play {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.newIn__item:hover .newIn__play {
+    opacity: 1;
+}
+
+.newIn__play a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 4px;
+    display: block;
+    margin: 1rem 0;
+}
+
+.newIn__play p {
+    color: #fff;
+}
+
+.newIn__play i {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 76px;
+    transform: scale(1);
+    transition: all 0.5s;
+}
+
+.newIn__play i:hover {
+    transform: scale(0.9);
+}
+
+/* SHOWTIME  */
+.showTime{
+    padding: 0 0 3rem;
+}
+
+.showTime .nav-tabs .nav-item.show .nav-link,
+.showTime .nav-tabs .nav-link.active {
+    border: none;
+}
+
+.showTime .nav-tabs .nav-link {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.showTime .nav-tabs .nav-link span {
+    padding: 15px 30px;
+    display: block;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #414141;
+}
+
+.showTime .nav-tabs .nav-link.active span {
+    color: #ec7532;
+}
+
+.showTime__row {
+    border-bottom: 1px solid #d8d8d8;
+}
+
+#myTabContent .tab-pane .showTime__row:last-child {
+    border-bottom: none;
+}
+
+.showTime .showTime__row img {
+    border-radius: 10px;
+    width: 100%;
+}
+
+.showTime__title .p1 {
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #ec7532;
+    margin: 0;
+}
+
+.showTime__title h3 {
+    font-size: 24px;
+    font-weight: 300;
+    color: #101010;
+    letter-spacing: 1px;
+}
+
+.showTime__title a {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: #ec7532;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.showTime__title a:hover {
+    color: #101010;
+}
+
+.showTime__runingTime {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    color: #4a4a4a;
+}
+
+.showTime__runingTime button {
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #717171;
+    background-color: #d8d8d8;
+}
+
+.showTime__time {
+    margin-left: 5px;
+}
+
+.showTime__mins span {
+    width: 33px;
+    height: 33px;
+    border: 1px solid;
+    border-radius: 50%;
+    color: #fff;
+    background: #4a4a4a;
+    text-align: center;
+    line-height: 32px;
+    font-weight: bold;
+}
+
+
+/* COMINGSOON */
+.comingSoon {
+    background-image: url(../img/slide-3.png);
+    background-color: #101010;
+    background-size: cover;
+    color: #fff;
+}
+
+.comingSoon .title {
+    border-bottom: 1px solid #333;
+    color: #fff;
+}
+
+.comingSoon .row {
+    align-items: center;
+}
+
+.comingSoon .comingSoon__type {
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #ec7532;
+}
+
+.comingSoon h3 {
+    font-size: 34px;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.comingSoon__rating>i {
+    color: #fbbd61;
+}
+
+.comingSoon__rating span i {
+    margin: 0 1rem;
+}
+
+.comingSoon a {
+    color: #ec7532;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.comingSoon a:hover {
+    color: #fff;
+}
+
+.comingSoon__video img {
+    width: 100%;
+}
+
+.comingSoon__video {
+    position: relative;
+}
+
+.comingSoon__video i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    border: 1px solid #ec7532;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 78px;
+    color: #fff;
+    font-size: 25px;
+    transition: 0.5s;
+}
+
+.comingSoon__video i:hover {
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+
+/* MOVIELIST */
+.movieList {
+    background: #101010;
+}
+
+.movieList .movieList__item img {
+    width: 100%;
+}
+
+.movieList__item {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.movieList__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: black;
+    opacity: 0.6;
+    transition: all 0.5s;
+}
+
+.movieList__item:hover .movieList__overlay {
+    opacity: 0;
+}
+
+/* CONTACT */
+.contact__content {
+    text-align: center;
+
+}
+
+.contact__content p {
+    font-size: 23px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: #4a4a4a;
+}
+
+.contact__content a {
+    text-decoration: none;
+    font-size: 46px;
+    color: #fbbd61;
+}
+
+
+/* FOOTER */
+footer {
+    background: #101010;
+}
+
+footer .footer__content h3 {
+    color: #ec7532;
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+footer .footer__content ul {
+    padding: 0;
+}
+
+footer .footer__content li {
+    list-style: none;
+}
+
+footer .footer__content li a {
+    text-decoration: none;
+    font-size: 13px;
+    padding: 3px 0;
+    color: #fff;
+    letter-spacing: 1.5px;
+    transition: 0.5s;
+}
+
+footer .footer__content li a:hover {
+    color: #fbbd61;
+}
+
+
+footer .footer__content ul i {
+    width: 15px;
+    height: 15px;
+    margin-right: 8px;
+}
+
+.footer__copyright {
+    color: #fff;
+    padding: 15px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.123);
+}
+
+/* _______________ RESPONSIVE __________________ */
+@media screen and (max-width: 991.98px) {
+    /* HEADER */
+    header .navbar-brand {
+        max-width: 180px;
+    }
+
+    header .navbar-brand img {
+        max-width: 100%;
+    }
+
+    #movieNavBar .nav-item a {
+        font-size: 14px;
+        padding: 20px 14px;
+        letter-spacing: 2px;
+    }
+
+    /* BANNER */
+    #carouselBanner .carousel-indicators {
+        margin: 0 0 15%;
+    }
+
+    /* SHOWTIME */
+}
+
+
+@media screen and (max-width: 767.98px) {
+
+    /* GLOBAL */
+    .line.active::after {
+        height: 0;
+    }
+
+    /* HEADER */
+    #movieNavBar .navbar-nav {
+        text-align: center;
+        background: rgba(0, 0, 0, 0.89);
+    }
+
+    #movieNavBar .nav-item.active a {
+        color: #ec7532;
+        font-weight: 600;
+    }
+
+    /* CAROUSEL */
+    #carouselBanner .carousel-caption h3 {
+        font-size: 2.5rem;
+    }
+
+    #carouselBanner .carousel-caption p:last-of-type{
+        font-size: 1rem;
+    }
+
+    /* NEWIN */
+    .newIn__content .newIn__title h4{
+        margin: 0 0 0.25rem;
+    }
+
+    .newIn__content .newIn__title{
+        margin: 0.5rem 0 1rem;
+    }
+
+
+    /* SHOWTIME */
+    .showTime .nav-tabs .nav-link span{
+        font-size: 16px;
+        padding: 10px 20px;
+    } 
+
+    .showTime__title .p1{
+        margin: 1rem 0 0;
+    }
+
+    .showTime__runingTime {
+        margin: 0.5rem 0 0;
+    }
+
+    .showTime__runingTime div {
+        padding: 0;
+    }
+    .showTime__runingTime > div {
+        margin: 0 0 1rem;
+    }
+
+    .showTime .nav-tabs .nav-link.line{
+        width: 100%;
+        text-align: left;
+    }
+}
